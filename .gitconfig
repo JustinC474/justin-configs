@@ -9,3 +9,6 @@
 	changed = cyan
 	untracked = magenta
 	deleted = red
+[user]
+	name = Justin Cowperthwaite
+	email = justinc474@gmail.com
