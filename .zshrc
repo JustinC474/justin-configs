@@ -52,7 +52,9 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:"$ROOT"/.gem/ruby/1.8/bin:/opt/nginx/sbin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:"$ROOT"/.gem/ruby/1.8/bin:/opt/nginx/sbin"
+# Below is for rabbitmq
+PATH=$PATH:/usr/local/sbin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
