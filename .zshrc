@@ -79,7 +79,12 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
+# Functions
+function case_insensitive_recursive_file_search() {
+	find . -iname "*"$1"*"
+}
+
 # Aliases
 alias gg="git grep"
 alias gc="git commit"
@@ -87,6 +92,7 @@ alias ga="git add"
 alias gs="git status"
 alias hig="history | grep"
 alias ll="ls -l"
+alias lg="case_insensitive_recursive_file_search"
 alias postgres="postgres -D /usr/local/var/postgres"
 
 if [[ -a ~/.thirdloverc ]]; then

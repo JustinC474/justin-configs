@@ -14,7 +14,8 @@ filetype indent on
 " Hightlight tabs and spaces
 set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
-
+" Auto update with changes in currently open vim sessions
+set autoread
 " Turn on highlighting
 set hlsearch
 
