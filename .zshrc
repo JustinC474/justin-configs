@@ -82,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Functions
 function case_insensitive_recursive_file_search() {
-	find . -iname "*"$1"*"
+	find . -not -path '*/\.*' -iname "*"$1"*"
 }
 
 # Aliases
@@ -91,12 +91,18 @@ alias gc="git commit"
 alias ga="git add"
 alias gs="git status"
 alias hig="history | grep"
+alias ag="alias | grep"
 alias ll="ls -l"
 alias lg="case_insensitive_recursive_file_search"
 alias postgres="postgres -D /usr/local/var/postgres"
 
 if [[ -a ~/.thirdloverc ]]; then
 	source ~/.thirdloverc
+fi
+
+if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
+	export WORKON_HOME=$HOME/.virtualenvs
+	source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 ### Added by the Heroku Toolbelt
