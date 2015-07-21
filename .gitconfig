@@ -12,3 +12,5 @@
 [user]
 	name = Justin Cowperthwaite
 	email = justinc474@gmail.com
+[push]
+	default = current
