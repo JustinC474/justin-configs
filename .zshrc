@@ -52,9 +52,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:"$ROOT"/.gem/ruby/1.8/bin:/opt/nginx/sbin"
-# Below is for rabbitmq
-PATH=$PATH:/usr/local/sbin
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:"$ROOT"/.gem/ruby/1.8/bin:/opt/nginx/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -96,10 +94,6 @@ alias ll="ls -l"
 alias lg="case_insensitive_recursive_file_search"
 alias postgres="postgres -D /usr/local/var/postgres"
 alias redis="redis-server /usr/local/etc/redis.conf"
-
-if [[ -a ~/.thirdloverc ]]; then
-	source ~/.thirdloverc
-fi
 
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	export WORKON_HOME=$HOME/.virtualenvs
