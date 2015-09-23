@@ -21,6 +21,9 @@ set autoread
 " Turn on highlighting
 set hlsearch
 
+" Turn on backspacing
+set backspace=2
+
 " This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
