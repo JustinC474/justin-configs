@@ -24,6 +24,10 @@ set hlsearch
 " Turn on backspacing
 set backspace=2
 
+" Clojure fuzzy indenting
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+
 " This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
