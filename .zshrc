@@ -88,10 +88,13 @@ alias gg="git grep"
 alias gc="git commit"
 alias ga="git add"
 alias gs="git status"
+
 alias hig="history | grep"
 alias ag="alias | grep"
+
 alias ll="ls -l"
 alias lg="case_insensitive_recursive_file_search"
+
 alias postgres="postgres -D /usr/local/var/postgres"
 alias redis="redis-server /usr/local/etc/redis.conf"
 

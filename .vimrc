@@ -24,6 +24,9 @@ set hlsearch
 " Turn on backspacing
 set backspace=2
 
+" CircleCI only - set tabs to be spaces
+autocmd BufRead,BufNewFile ~/Projects/circleci/* setlocal expandtab
+
 " Clojure fuzzy indenting
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
