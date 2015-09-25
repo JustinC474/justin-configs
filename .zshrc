@@ -97,6 +97,10 @@ alias lg="case_insensitive_recursive_file_search"
 
 alias postgres="postgres -D /usr/local/var/postgres"
 alias redis="redis-server /usr/local/etc/redis.conf"
+alias run_mongo="mongod --config /usr/local/etc/mongod.conf"
+
+# CircleCI Aliases
+alias rft="cd ~/Projects/circleci/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
 
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	export WORKON_HOME=$HOME/.virtualenvs
@@ -106,3 +110,6 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"
