@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/vim-salve"]
 	path = .vim/bundle/vim-salve
 	url = git@github.com:tpope/vim-salve.git
+[submodule ".vim/bundle/vim-dispatch"]
+	path = .vim/bundle/vim-dispatch
+	url = git@github.com:tpope/vim-dispatch.git
