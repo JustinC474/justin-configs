@@ -52,7 +52,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:"$ROOT"/.gem/ruby/1.8/bin:/opt/nginx/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$ROOT/.gem/ruby/1.8/bin:/opt/nginx/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -80,7 +80,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Functions
 function case_insensitive_recursive_file_search() {
-	find . -not -path '*/\.*' -iname "*"$1"*"
+	find . -not -path '*/\.*' -iname "*$1*"
 }
 
 # Aliases
@@ -100,7 +100,12 @@ alias redis="redis-server /usr/local/etc/redis.conf"
 alias run_mongo="mongod --config /usr/local/etc/mongod.conf"
 
 # CircleCI Aliases
-alias rft="cd ~/Projects/circleci/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
+export CIRCLE_DIR="~/git"
+if [[ -d $ROOT/git/circleci ]]; then
+	export CIRCLE_DIR="~/git/circleci"
+fi
+
+alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
 
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	export WORKON_HOME=$HOME/.virtualenvs
