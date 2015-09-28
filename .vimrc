@@ -11,8 +11,10 @@ set autoindent
 set tabstop=2
 set shiftwidth=2
 filetype indent on
+
 " Python specific
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4
+
 " Hightlight tabs and spaces
 set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list

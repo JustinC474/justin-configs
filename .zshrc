@@ -99,22 +99,22 @@ alias postgres="postgres -D /usr/local/var/postgres"
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias run_mongo="mongod --config /usr/local/etc/mongod.conf"
 
-# CircleCI Aliases
-export CIRCLE_DIR="~/git"
-if [[ -d $ROOT/git/circleci ]]; then
-	export CIRCLE_DIR="~/git/circleci"
-fi
-
-alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
-
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	export WORKON_HOME=$HOME/.virtualenvs
 	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 	source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-### Added by the Heroku Toolbelt
+# Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# CircleCI Aliases
+export CIRCLE_DIR=$ROOT/git
+if [[ -d $ROOT/git/circleci ]]; then
+	export CIRCLE_DIR=$ROOT/git/circleci
+fi
+
+alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
