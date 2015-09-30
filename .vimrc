@@ -33,9 +33,6 @@ autocmd BufRead,BufNewFile $CIRCLE_DIR/* setlocal expandtab
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
 
-" Rainbow parens
-let g:rainbow_active = 1
-
 " This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
