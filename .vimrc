@@ -3,6 +3,9 @@ syntax on
 " Awesome colors
 colorscheme monokai
 
+" Set the mapleader
+let mapleader = ","
+
 " Bottom right numbers
 set ruler
 
