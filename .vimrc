@@ -8,14 +8,15 @@ let mapleader = ","
 
 " Bottom right numbers
 set ruler
-
+"
 " File tabs for JS, CSS, HTML
 set autoindent
+set noexpandtab
 set tabstop=2
 set shiftwidth=2
-filetype indent on
 
 " Python specific
+autocmd BufReadPre,BufNewFile *.py let b:did_ftplugin = 1
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4
 
 " Hightlight tabs and spaces
