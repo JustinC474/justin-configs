@@ -106,6 +106,11 @@ if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	source /usr/local/bin/virtualenvwrapper.sh
 fi
 
+# Add MacGPG2 to the PATH if it exists
+if [[ -d /usr/local/MacGPG2/bin ]]; then
+	export PATH="$PATH:/usr/local/MacGPG2/bin"
+fi
+
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
