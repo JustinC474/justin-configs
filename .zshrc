@@ -88,6 +88,7 @@ alias gg="git grep"
 alias gc="git commit"
 alias ga="git add"
 alias gs="git status"
+alias gl="git log --graph"
 
 alias hig="history | grep"
 alias ag="alias | grep"
