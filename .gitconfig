@@ -23,4 +23,4 @@
 [core]
 	excludesfile=~/.gitignore_global
 [rerere]
-	enabled = 1
+	enabled = true
