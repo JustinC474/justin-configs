@@ -102,6 +102,8 @@ alias postgres="postgres -D /usr/local/var/postgres"
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias run_mongo="mongod --config /usr/local/etc/mongod.conf"
 
+alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
+
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	export WORKON_HOME=$HOME/.virtualenvs
 	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
