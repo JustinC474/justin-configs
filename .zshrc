@@ -90,6 +90,8 @@ alias ga="git add"
 alias gs="git status"
 alias gl="git log --graph"
 
+alias vundle="vim +PluginInstall +qall"
+
 alias hig="history | grep"
 alias ag="alias | grep"
 
