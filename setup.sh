@@ -24,3 +24,5 @@ ln -s $repo_dir/.zshrc ~/.zshrc
 
 echo "Changing the shell to zsh."
 chsh -s /bin/zsh
+
+vim +PluginInstall +qall
