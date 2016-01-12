@@ -62,12 +62,18 @@ let mapleader = ","
 
 " Bottom right numbers
 set ruler
-"
+
+" No swp files
+set noswapfile
+
 " File tabs for JS, CSS, HTML
 set autoindent
 set noexpandtab
 set tabstop=2
 set shiftwidth=2
+
+" use the clipboards of vim and win
+set clipboard+=unnamed
 
 " Python specific
 autocmd BufReadPre,BufNewFile *.py let b:did_ftplugin = 1
