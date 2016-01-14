@@ -119,4 +119,13 @@ endfunction
 
 command! -range SortSCSS <line1>,<line2>call s:SortSCSS()
 
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
 vmap <Leader>socd :SortSCSS<cr>
