@@ -62,12 +62,18 @@ let mapleader = ","
 
 " Bottom right numbers
 set ruler
-"
+
+" No swp files
+set noswapfile
+
 " File tabs for JS, CSS, HTML
 set autoindent
 set noexpandtab
 set tabstop=2
 set shiftwidth=2
+
+" use the clipboards of vim and win
+set clipboard+=unnamed
 
 " Python specific
 autocmd BufReadPre,BufNewFile *.py let b:did_ftplugin = 1
@@ -112,5 +118,14 @@ function! s:SortSCSS() range
 endfunction
 
 command! -range SortSCSS <line1>,<line2>call s:SortSCSS()
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
 
 vmap <Leader>socd :SortSCSS<cr>

@@ -130,3 +130,4 @@ fi
 alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
 alias cdf="cd $CIRCLE_DIR/frontend-private"
 alias cdc="cd $CIRCLE_DIR/circle"
+alias cdp="cd $CIRCLE_DIR/pipeline"
