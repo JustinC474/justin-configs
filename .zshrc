@@ -90,6 +90,8 @@ alias ga="git add"
 alias gs="git status"
 alias gl="git log --graph"
 
+alias git=hub
+
 alias vundle="vim +PluginInstall +qall"
 
 alias hig="history | grep"
@@ -129,5 +131,6 @@ fi
 
 alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
 alias cdf="cd $CIRCLE_DIR/frontend-private"
+alias rf="cd $CIRCLE_DIR/frontend-private; foreman start"
 alias cdc="cd $CIRCLE_DIR/circle"
 alias cdp="cd $CIRCLE_DIR/pipeline"
