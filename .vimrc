@@ -57,11 +57,21 @@ syntax on
 " Awesome colors
 colorscheme monokai
 
+" solarized config
+" syntax enable
+" set background=dark
+" let g:solarized_termcolors=256
+" colorscheme solarized
+
 " Set the mapleader
 let mapleader = ","
 
 " Bottom right numbers
 set ruler
+
+" Line numbers
+set number
+set relativenumber
 
 " No swp files
 set noswapfile

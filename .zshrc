@@ -87,8 +87,11 @@ function case_insensitive_recursive_file_search() {
 alias gg="git grep"
 alias gc="git commit"
 alias ga="git add"
+alias ga="git add"
+alias gap="git add . -p"
 alias gs="git status"
 alias gl="git log --graph"
+alias wipe="!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
 
 alias git=hub
 
@@ -116,6 +119,11 @@ fi
 if [[ -d /usr/local/MacGPG2/bin ]]; then
 	export PATH="$PATH:/usr/local/MacGPG2/bin"
 fi
+#
+# Add apache-maven-3.3.9 to the PATH if it exists
+if [[ -d /usr/local/MacGPG2/bin ]]; then
+	export PATH="$PATH:/usr/local/apache-maven-3.3.9/bin"
+fi
 
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -127,6 +135,11 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export CIRCLE_DIR=$ROOT/git
 if [[ -d $ROOT/git/circleci ]]; then
 	export CIRCLE_DIR=$ROOT/git/circleci
+fi
+
+# Load a ~/.profile if we have one
+if [[ -s ~/.profile ]]; then
+	source ~/.profile
 fi
 
 alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
