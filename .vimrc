@@ -55,13 +55,7 @@ filetype plugin indent on    " required
 syntax on
 
 " Awesome colors
-colorscheme monokai
-
-" solarized config
-" syntax enable
-" set background=dark
-" let g:solarized_termcolors=256
-" colorscheme solarized
+colorscheme harlequin
 
 " Set the mapleader
 let mapleader = ","
@@ -88,6 +82,12 @@ set clipboard+=unnamed
 " Python specific
 autocmd BufReadPre,BufNewFile *.py let b:did_ftplugin = 1
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4
+
+" Rainbow Parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " Hightlight tabs and spaces
 set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
