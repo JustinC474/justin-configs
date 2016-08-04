@@ -120,22 +120,5 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 
-vmap <Leader>t <Plug>(EasyAlign)
-
-function! s:SortSCSS() range
-  exec a:firstline . ',' . a:lastline . 'sort'
-  exec a:firstline . ',' . a:lastline . 'EasyAlign :'
-endfunction
-
-command! -range SortSCSS <line1>,<line2>call s:SortSCSS()
-
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
-
-vmap <Leader>socd :SortSCSS<cr>
+" Git grep for word under cursor
+nnoremap gr :Ggrep <cword> *<CR>

@@ -91,7 +91,8 @@ alias ga="git add"
 alias gap="git add . -p"
 alias gs="git status"
 alias gl="git log --graph"
-alias wipe="!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
+alias gmp="git checkout master; git pull origin master"
+alias wipe="git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
 
 alias git=hub
 
