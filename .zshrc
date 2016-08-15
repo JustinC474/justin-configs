@@ -91,7 +91,9 @@ alias ga="git add"
 alias gap="git add . -p"
 alias gs="git status"
 alias gl="git log --graph"
-alias wipe="!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
+alias gr="cd `git rev-parse --show-toplevel`"
+alias wipe="git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
+alias prune-merged="!git branch --merged master | grep -v 'master$' | xargs git branch -d"
 
 alias git=hub
 
