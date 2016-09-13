@@ -128,8 +128,15 @@ let g:syntastic_javascript_checkers = ['jshint']
 " Auto open the quickfix window after any grep invocation
 autocmd QuickFixCmdPost *grep* cwindow
 
+" vim-fugitive hotkeys
 " Git grep for word under cursor
 nnoremap gr :Ggrep <cword> *<CR>
+nnoremap gp :Git push<CR>
+nnoremap gc :Gcommit<CR>
+nnoremap gl :Glog<CR>
+nnoremap gd :Gdiff<CR>
+nnoremap gs :Gstatus<CR>
+nnoremap gb :Gblame<CR>
 
 "The Silver Searcher
 if executable('ag')
@@ -166,3 +173,4 @@ if executable('matcher')
 
   endfunction
 end
+
