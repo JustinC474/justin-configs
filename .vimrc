@@ -10,10 +10,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-"General
-"Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'tpope/vim-fugitive'
+"File search
 Plugin 'kien/ctrlp.vim'
+Plugin 'burke/matcher'
+
+"General
+Plugin 'tpope/vim-fugitive'
+"Plugin 'chriskempson/vim-tomorrow-theme'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'bling/vim-airline'
 "Plugin 'rking/ag.vim'
@@ -36,6 +39,8 @@ Plugin 'vim-scripts/paredit.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'groenewege/vim-less'
 
+"Markdown
+Plugin 'gabrielelana/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -120,5 +125,44 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 
+" Auto open the quickfix window after any grep invocation
+autocmd QuickFixCmdPost *grep* cwindow
+
 " Git grep for word under cursor
 nnoremap gr :Ggrep <cword> *<CR>
+
+"The Silver Searcher
+if executable('ag')
+  "Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  "Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+if executable('matcher')
+  let g:ctrlp_match_func = { 'match': 'GoodMatch' }
+
+  function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
+
+    " Create a cache file if not yet exists
+    let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
+    if !( filereadable(cachefile) && a:items == readfile(cachefile) )
+      call writefile(a:items, cachefile)
+    endif
+    if !filereadable(cachefile)
+      return []
+    endif
+
+    " a:mmode is currently ignored. In the future, we should probably do
+    " something about that. the matcher behaves like "full-line".
+    let cmd = 'matcher --limit '.a:limit.' --manifest '.cachefile.' '
+    if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
+      let cmd = cmd.'--no-dotfiles '
+    endif
+    let cmd = cmd.a:str
+
+    return split(system(cmd), "\n")
+
+  endfunction
+end
