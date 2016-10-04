@@ -16,6 +16,7 @@ Plugin 'burke/matcher'
 
 "General
 Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
 "Plugin 'chriskempson/vim-tomorrow-theme'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'bling/vim-airline'
@@ -25,7 +26,6 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-surround'
 "Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'majutsushi/tagbar'
-"Plugin 'scrooloose/nerdtree'
 "Plugin 'lilydjwg/colorizer'
 
 "Clojure
@@ -97,13 +97,17 @@ au Syntax * RainbowParenthesesLoadBraces
 " Hightlight tabs and spaces
 set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
+
 " Auto update with changes in currently open vim sessions
 set autoread
+
 " Turn on highlighting
 set hlsearch
 
 " Turn on backspacing
 set backspace=2
+
+set wildmenu " visual autocomplete for command menu
 
 " CircleCI only - set tabs to be spaces
 autocmd BufRead,BufNewFile $CIRCLE_DIR/* setlocal expandtab
