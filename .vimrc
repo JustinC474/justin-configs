@@ -178,3 +178,5 @@ if executable('matcher')
   endfunction
 end
 
+" Open NerdTree with Ctrl + N
+map <C-n> :NERDTreeToggle<CR>
