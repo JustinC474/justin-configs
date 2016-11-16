@@ -180,3 +180,9 @@ end
 
 " Open NerdTree with Ctrl + N
 map <C-n> :NERDTreeToggle<CR>
+
+" Map resize functions to <Leader> + and - / _ and =
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>_ :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
