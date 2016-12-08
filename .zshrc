@@ -104,9 +104,10 @@ alias ag="alias | grep"
 alias ll="ls -l"
 alias lg="case_insensitive_recursive_file_search"
 
-alias postgres="postgres -D /usr/local/var/postgres"
-alias redis="redis-server /usr/local/etc/redis.conf"
-alias run_mongo="mongod --config /usr/local/etc/mongod.conf"
+alias start-postgres="postgres -D /usr/local/var/postgres"
+alias start-redis="redis-server /usr/local/etc/redis.conf"
+alias start-mongo="mongod --config /usr/local/etc/mongod.conf"
+alias start-rabbit="rabbitmq-server"
 
 alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
 
