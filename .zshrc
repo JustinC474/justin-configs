@@ -109,6 +109,9 @@ alias start-redis="redis-server /usr/local/etc/redis.conf"
 alias start-mongo="mongod --config /usr/local/etc/mongod.conf"
 alias start-rabbit="rabbitmq-server"
 
+alias start-circle-services="start-postgres &; start-redis &; start-mongo &; start-rabbit &;"
+alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jumphost"
+
 alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
 
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
