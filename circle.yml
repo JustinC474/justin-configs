@@ -1,0 +1,5 @@
+test:
+  override:
+    - set -o pipefail; case $CIRCLE_NODE_INDEX in 0) exit 1;; 1) sleep 10000000;;
+        parallel: true
+        timeout: 60000
