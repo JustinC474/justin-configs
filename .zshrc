@@ -101,7 +101,7 @@ alias vundle="vim +PluginInstall +qall"
 alias hig="history | grep"
 alias ag="alias | grep"
 
-alias ll="ls -l"
+alias ll="ls -ltrh"
 alias lg="case_insensitive_recursive_file_search"
 
 alias start-postgres="postgres -D /usr/local/var/postgres"
@@ -110,7 +110,10 @@ alias start-mongo="mongod --config /usr/local/etc/mongod.conf"
 alias start-rabbit="rabbitmq-server"
 
 alias start-circle-services="start-postgres &; start-redis &; start-mongo &; start-rabbit &;"
+alias start-circle="cdc; start-circle-services; lein run"
+
 alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jumphost"
+alias start-rmq-legacy-admin="ssh -f -N -L 8672:10.0.66.57:15672 jumphost"
 
 alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
 

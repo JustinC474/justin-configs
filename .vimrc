@@ -140,7 +140,11 @@ nnoremap gc :Gcommit<CR>
 nnoremap gl :Glog<CR>
 nnoremap gd :Gdiff<CR>
 nnoremap gs :Gstatus<CR>
-nnoremap gb :Gblame<CR>
+" Ignore whitespace changes in git blame
+nnoremap gb :Gblame -w -M<CR>
+
+" hub browse the commit under the cursor
+nnoremap  :!hub browse -- commit/<cword> *<CR>
 
 "The Silver Searcher
 if executable('ag')
