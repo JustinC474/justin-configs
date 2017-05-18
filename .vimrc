@@ -77,7 +77,7 @@ set noswapfile
 
 " File tabs for JS, CSS, HTML
 set autoindent
-set noexpandtab
+set expandtab
 set tabstop=2
 set shiftwidth=2
 
@@ -108,9 +108,6 @@ set hlsearch
 set backspace=2
 
 set wildmenu " visual autocomplete for command menu
-
-" CircleCI only - set tabs to be spaces
-autocmd BufRead,BufNewFile $CIRCLE_DIR/* setlocal expandtab
 
 " Clojure fuzzy indenting
 let g:clojure_fuzzy_indent = 1
