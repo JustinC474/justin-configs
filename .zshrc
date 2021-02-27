@@ -126,9 +126,6 @@ alias start-mongo="mongod --config /usr/local/etc/mongod.conf"
 alias start-rabbit="rabbitmq-server"
 alias start-mysql="mysqld"
 
-alias start-circle-services="start-postgres &; start-redis &; start-mongo &; start-rabbit &;"
-alias start-circle="cdc; start-circle-services; lein run"
-
 alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jumphost"
 alias start-rmq-legacy-admin="ssh -f -N -L 8672:10.0.66.57:15672 jumphost"
 
@@ -159,19 +156,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# CircleCI Aliases
-export CIRCLE_DIR=$ROOT/git
-if [[ -d $ROOT/git/circleci ]]; then
-	export CIRCLE_DIR=$ROOT/git/circleci
-fi
-
 # Load a ~/.profile if we have one
 if [[ -s ~/.profile ]]; then
 	source ~/.profile
 fi
-
-alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
-alias cdf="cd $CIRCLE_DIR/frontend-private"
-alias rf="cd $CIRCLE_DIR/frontend-private; foreman start"
-alias cdc="cd $CIRCLE_DIR/circle"
-alias cdp="cd $CIRCLE_DIR/pipeline"
