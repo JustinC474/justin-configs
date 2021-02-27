@@ -1,8 +1,11 @@
-# Set root path
+#env | grep PATH Set root path
 export ROOT=~
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ROOT/.oh-my-zsh
+
+# So gpg works
+export GPG_TTY=$(tty)
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -51,8 +54,8 @@ ZSH_THEME="mh"
 plugins=(git github git-extras zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$ROOT/.gem/ruby/1.8/bin:/opt/nginx/sbin"
+export PATH=$PATH"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/nginx/sbin"
+export PATH=$HOME"/.rbenv/bin:"$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -96,6 +99,19 @@ alias wipe="git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --
 
 alias git=hub
 
+function django-test-with-coverage() {
+  poetry run coverage run manage.py test $1
+  poetry run coverage report
+}
+
+alias django="poetry run python manage.py"
+alias django-test="poetry run coverage run manage.py test"
+alias django-notebook="django shell_plus --notebook"
+alias django-format="black .; git add .; git commit -m \"auto formatting via black\";"
+alias django-shell="django shell"
+alias django-run="django runserver"
+alias pip="pip3"
+
 alias vundle="vim +PluginInstall +qall"
 
 alias hig="history | grep"
@@ -108,6 +124,7 @@ alias start-postgres="postgres -D /usr/local/var/postgres"
 alias start-redis="redis-server /usr/local/etc/redis.conf"
 alias start-mongo="mongod --config /usr/local/etc/mongod.conf"
 alias start-rabbit="rabbitmq-server"
+alias start-mysql="mysqld"
 
 alias start-circle-services="start-postgres &; start-redis &; start-mongo &; start-rabbit &;"
 alias start-circle="cdc; start-circle-services; lein run"
@@ -116,6 +133,9 @@ alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jum
 alias start-rmq-legacy-admin="ssh -f -N -L 8672:10.0.66.57:15672 jumphost"
 
 alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
+
+# Ruby Env
+eval "$(rbenv init -)"
 
 if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 	export WORKON_HOME=$HOME/.virtualenvs

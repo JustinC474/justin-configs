@@ -12,6 +12,7 @@
 [user]
 	name = Justin Cowperthwaite
 	email = justinc474@gmail.com
+	signingkey = 1D8939354EB40D66B5E13A984601F4E1B96A1239
 [push]
 	default = current
 [pull]
@@ -29,3 +30,7 @@
 	enabled = true
 [url "ssh://git@github.com:"]
 	insteadOf = https://github.com
+[commit]
+	gpgsign = false
+[gpg]
+	program = gpg
