@@ -8,7 +8,7 @@ export ZSH=$ROOT/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="mh"
+ZSH_THEME="sobole"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -115,13 +115,13 @@ alias start-circle="cdc; start-circle-services; lein run"
 alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jumphost"
 alias start-rmq-legacy-admin="ssh -f -N -L 8672:10.0.66.57:15672 jumphost"
 
+alias django="poetry run python manage.py"
+alias prettier="yarn lint; git add .; git commit -m \"auto lint with prettier\";"
+
 alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
 
-if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
-	export WORKON_HOME=$HOME/.virtualenvs
-	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-	source /usr/local/bin/virtualenvwrapper.sh
-fi
+# Make python3 our default
+alias python="/usr/local/bin/python3"
 
 # Add MacGPG2 to the PATH if it exists
 if [[ -d /usr/local/MacGPG2/bin ]]; then
@@ -139,11 +139,17 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Need to do this to run Ruby for some reason
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
 # CircleCI Aliases
 export CIRCLE_DIR=$ROOT/git
 if [[ -d $ROOT/git/circleci ]]; then
 	export CIRCLE_DIR=$ROOT/git/circleci
 fi
+
+# so we can run rvm without using a login shell
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Load a ~/.profile if we have one
 if [[ -s ~/.profile ]]; then
@@ -155,3 +161,5 @@ alias cdf="cd $CIRCLE_DIR/frontend-private"
 alias rf="cd $CIRCLE_DIR/frontend-private; foreman start"
 alias cdc="cd $CIRCLE_DIR/circle"
 alias cdp="cd $CIRCLE_DIR/pipeline"
+
+export PATH="$HOME/.poetry/bin:$PATH"

@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible              " be improved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -17,16 +17,8 @@ Plugin 'burke/matcher'
 "General
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'chriskempson/vim-tomorrow-theme'
-"Plugin 'bling/vim-airline'
-"Plugin 'rking/ag.vim'
-"Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'airblade/vim-gitgutter'
-"Plugin 'tpope/vim-surround'
-"Plugin 'ntpeters/vim-better-whitespace'
-"Plugin 'majutsushi/tagbar'
-"Plugin 'lilydjwg/colorizer'
+" Get this to work later
+"Plugin 'ycm-core/YouCompleteMe'
 
 "Clojure
 Plugin 'tpope/vim-fireplace'
@@ -35,9 +27,15 @@ Plugin 'eapache/rainbow_parentheses.vim'
 Plugin 'guns/vim-clojure-highlight'
 Plugin 'vim-scripts/paredit.vim'
 
+"Vue
+Plugin 'posva/vim-vue'
+
+"Typescript
+Plugin 'leafgarland/typescript-vim'
+
 "Old Plugins
-Plugin 'scrooloose/syntastic'
-Plugin 'groenewege/vim-less'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'groenewege/vim-less'
 
 "Markdown
 Plugin 'gabrielelana/vim-markdown'
@@ -59,8 +57,40 @@ filetype plugin indent on    " required
 
 syntax on
 
-" Awesome colors
-colorscheme harlequin
+set cursorline
+
+" Use 24bit insteand of 8bit colors
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+function! DarkMode()
+  colorscheme molokai
+  " Switch to dark mode for iTerm
+  silent !osascript -e 'tell app "System Events" to keystroke "d" using {shift down, option down}'
+endfunction
+
+function! LightMode()
+  colorscheme nuvola
+  " Make the EOL character gray
+  hi NonText ctermfg=7 guifg=gray
+  " Switch to light mode for iTerm
+  silent !osascript -e 'tell app "System Events" to keystroke "l" using {shift down, option down}'
+endfunction
+
+command! DarkMode call DarkMode()
+command! LightMode call LightMode()
+
+nnoremap dm :DarkMode<CR>
+nnoremap lm :LightMode<CR>
+
+if system('date +%H') > 18
+    call DarkMode()
+else
+    call LightMode()
+endif
 
 " Set the mapleader
 let mapleader = ","
@@ -70,7 +100,6 @@ set ruler
 
 " Line numbers
 set number
-set relativenumber
 
 " No swp files
 set noswapfile
@@ -129,6 +158,12 @@ let g:syntastic_javascript_checkers = ['jshint']
 " Auto open the quickfix window after any grep invocation
 autocmd QuickFixCmdPost *grep* cwindow
 
+" quick tab
+" tab backwards
+map <C-]> gT
+" tab forwards
+map <C-\> gt
+
 " vim-fugitive hotkeys
 " Git grep for word under cursor
 nnoremap gr :Ggrep <cword> *<CR>
@@ -142,6 +177,10 @@ nnoremap gb :Gblame -w -M<CR>
 
 " hub browse the commit under the cursor
 nnoremap  :!hub browse -- commit/<cword> *<CR>
+
+"ctrl p ignore files
+let g:ctrlp_custom_ignore = 'node_modules'
+
 
 "The Silver Searcher
 if executable('ag')
@@ -178,6 +217,9 @@ if executable('matcher')
 
   endfunction
 end
+
+" Ignore files for NERDTree
+let NERDTreeIgnore=['__init__.py', '__pycache__']
 
 " Open NerdTree with Ctrl + N
 map <C-n> :NERDTreeToggle<CR>
