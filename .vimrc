@@ -17,21 +17,18 @@ Plugin 'burke/matcher'
 "General
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+"
 " Get this to work later
 "Plugin 'ycm-core/YouCompleteMe'
 
-"Clojure
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-clojure-static'
-Plugin 'eapache/rainbow_parentheses.vim'
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'vim-scripts/paredit.vim'
-
-"Vue
-Plugin 'posva/vim-vue'
-
 "Typescript
 Plugin 'leafgarland/typescript-vim'
+
+"Syntaxt
+Plugin 'prettier/vim-prettier'
+Plugin 'posva/vim-vue'
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1
 
 "Old Plugins
 "Plugin 'scrooloose/syntastic'
@@ -111,17 +108,14 @@ set tabstop=2
 set shiftwidth=2
 
 " use the clipboards of vim and win
-set clipboard+=unnamed
+set clipboard=unnamed
 
 " Python specific
 autocmd BufReadPre,BufNewFile *.py let b:did_ftplugin = 1
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4
 
-" Rainbow Parens
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" PEP8 via Flake8
+autocmd FileType python map <buffer> <Leader>o :call flake8#Flake8()<CR>
 
 " Hightlight tabs and spaces
 set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -178,9 +172,8 @@ nnoremap gb :Gblame -w -M<CR>
 " hub browse the commit under the cursor
 nnoremap  :!hub browse -- commit/<cword> *<CR>
 
-"ctrl p ignore files
+" Ctrl P ignore
 let g:ctrlp_custom_ignore = 'node_modules'
-
 
 "The Silver Searcher
 if executable('ag')
@@ -223,6 +216,8 @@ let NERDTreeIgnore=['__init__.py', '__pycache__']
 
 " Open NerdTree with Ctrl + N
 map <C-n> :NERDTreeToggle<CR>
+" Ignore python files
+let NERDTreeIgnore=['\.egg-info$', '__init__\.py$', '__pycache__$']
 
 " Map resize functions to <Leader> + and - / _ and =
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>

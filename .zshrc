@@ -1,8 +1,11 @@
-# Set root path
+#env | grep PATH Set root path
 export ROOT=~
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ROOT/.oh-my-zsh
+
+# So gpg works
+export GPG_TTY=$(tty)
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -51,8 +54,8 @@ ZSH_THEME="sobole"
 plugins=(git github git-extras zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$ROOT/.gem/ruby/1.8/bin:/opt/nginx/sbin"
+export PATH=$PATH"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/nginx/sbin"
+export PATH=$HOME"/.rbenv/bin:"$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -96,6 +99,19 @@ alias wipe="git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --
 
 alias git=hub
 
+function django-test-with-coverage() {
+  poetry run coverage run manage.py test $1
+  poetry run coverage report
+}
+
+alias django="poetry run python manage.py"
+alias django-test="poetry run coverage run manage.py test"
+alias django-notebook="django shell_plus --notebook"
+alias django-format="black .; git add .; git commit -m \"auto formatting via black\";"
+alias django-shell="django shell"
+alias django-run="django runserver"
+alias pip="pip3"
+
 alias vundle="vim +PluginInstall +qall"
 
 alias hig="history | grep"
@@ -108,9 +124,7 @@ alias start-postgres="postgres -D /usr/local/var/postgres"
 alias start-redis="redis-server /usr/local/etc/redis.conf"
 alias start-mongo="mongod --config /usr/local/etc/mongod.conf"
 alias start-rabbit="rabbitmq-server"
-
-alias start-circle-services="start-postgres &; start-redis &; start-mongo &; start-rabbit &;"
-alias start-circle="cdc; start-circle-services; lein run"
+alias start-mysql="mysqld"
 
 alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jumphost"
 alias start-rmq-legacy-admin="ssh -f -N -L 8672:10.0.66.57:15672 jumphost"
@@ -123,15 +137,8 @@ alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
 # Make python3 our default
 alias python="/usr/local/bin/python3"
 
-# Add MacGPG2 to the PATH if it exists
-if [[ -d /usr/local/MacGPG2/bin ]]; then
-	export PATH="$PATH:/usr/local/MacGPG2/bin"
-fi
-#
-# Add apache-maven-3.3.9 to the PATH if it exists
-if [[ -d /usr/local/MacGPG2/bin ]]; then
-	export PATH="$PATH:/usr/local/apache-maven-3.3.9/bin"
-fi
+# Ruby Env
+eval "$(rbenv init -)"
 
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -142,12 +149,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Need to do this to run Ruby for some reason
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-# CircleCI Aliases
-export CIRCLE_DIR=$ROOT/git
-if [[ -d $ROOT/git/circleci ]]; then
-	export CIRCLE_DIR=$ROOT/git/circleci
-fi
-
 # so we can run rvm without using a login shell
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
@@ -155,11 +156,5 @@ fi
 if [[ -s ~/.profile ]]; then
 	source ~/.profile
 fi
-
-alias rft="cd $CIRCLE_DIR/frontend-private; node_modules/karma/bin/karma start karma.dev.conf.js --single-run"
-alias cdf="cd $CIRCLE_DIR/frontend-private"
-alias rf="cd $CIRCLE_DIR/frontend-private; foreman start"
-alias cdc="cd $CIRCLE_DIR/circle"
-alias cdp="cd $CIRCLE_DIR/pipeline"
 
 export PATH="$HOME/.poetry/bin:$PATH"
