@@ -11,7 +11,7 @@ export GPG_TTY=$(tty)
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="mh"
+ZSH_THEME="sobole"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -129,26 +129,16 @@ alias start-mysql="mysqld"
 alias start-graylog="ssh -f -N -L 9000:graylog-primary.infra.circleci.com:80 jumphost"
 alias start-rmq-legacy-admin="ssh -f -N -L 8672:10.0.66.57:15672 jumphost"
 
+alias django="poetry run python manage.py"
+alias prettier="yarn lint; git add .; git commit -m \"auto lint with prettier\";"
+
 alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
+
+# Make python3 our default
+alias python="/usr/local/bin/python3"
 
 # Ruby Env
 eval "$(rbenv init -)"
-
-if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
-	export WORKON_HOME=$HOME/.virtualenvs
-	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-	source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-# Add MacGPG2 to the PATH if it exists
-if [[ -d /usr/local/MacGPG2/bin ]]; then
-	export PATH="$PATH:/usr/local/MacGPG2/bin"
-fi
-#
-# Add apache-maven-3.3.9 to the PATH if it exists
-if [[ -d /usr/local/MacGPG2/bin ]]; then
-	export PATH="$PATH:/usr/local/apache-maven-3.3.9/bin"
-fi
 
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -156,7 +146,15 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Need to do this to run Ruby for some reason
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# so we can run rvm without using a login shell
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
 # Load a ~/.profile if we have one
 if [[ -s ~/.profile ]]; then
 	source ~/.profile
 fi
+
+export PATH="$HOME/.poetry/bin:$PATH"
