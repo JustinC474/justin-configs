@@ -63,6 +63,9 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+" Default to DarkMode
+colorscheme molokai
+
 function! DarkMode()
   colorscheme molokai
   " Switch to dark mode for iTerm
