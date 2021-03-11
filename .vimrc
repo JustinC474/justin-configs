@@ -83,12 +83,6 @@ command! LightMode call LightMode()
 nnoremap dm :DarkMode<CR>
 nnoremap lm :LightMode<CR>
 
-if system('date +%H') > 18
-    call DarkMode()
-else
-    call LightMode()
-endif
-
 " Set the mapleader
 let mapleader = ","
 
