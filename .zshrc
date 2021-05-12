@@ -55,7 +55,6 @@ plugins=(git github git-extras zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
 export PATH=$PATH"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/nginx/sbin"
-export PATH=$HOME"/.rbenv/bin:"$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -107,7 +106,7 @@ function django-test-with-coverage() {
 alias django="poetry run python manage.py"
 alias django-test="poetry run coverage run manage.py test"
 alias django-notebook="django shell_plus --notebook"
-alias django-format="black .; git add .; git commit -m \"auto formatting via black\";"
+alias django-format="poetry run black .; git add .; git commit -m \"auto formatting via black\";"
 alias django-shell="django shell"
 alias django-run="django runserver"
 alias pip="pip3"
@@ -137,20 +136,15 @@ alias backup-ssh="mkdir ~/.ssh; cp ~/.ssh_backup/* ~/.ssh/"
 # Make python3 our default
 alias python="/usr/local/bin/python3"
 
-# Ruby Env
-eval "$(rbenv init -)"
-
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Need to do this to run Ruby for some reason
+# Add local ruby to the path
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-# so we can run rvm without using a login shell
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+# Add rbenv second so it takes priority
+export PATH=$HOME"/.rbenv/bin:"$PATH
+eval "$(rbenv init -)"
 
 # Load a ~/.profile if we have one
 if [[ -s ~/.profile ]]; then
@@ -158,3 +152,8 @@ if [[ -s ~/.profile ]]; then
 fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# nvm for node version management
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
