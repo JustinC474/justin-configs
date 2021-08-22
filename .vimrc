@@ -120,6 +120,8 @@ autocmd FileType python map <buffer> <Leader>o :call flake8#Flake8()<CR>
 " Hightlight tabs and spaces
 set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
+" Make tabs grey
+hi SpecialKey guifg=darkgrey ctermfg=darkgrey
 
 " Auto update with changes in currently open vim sessions
 set autoread
